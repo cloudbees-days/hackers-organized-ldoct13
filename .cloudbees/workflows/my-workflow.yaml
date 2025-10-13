@@ -33,3 +33,11 @@ jobs:
           organization: ${{ cloudbees.org.id }}
           unify-pat: ${{ secrets.UNIFY_PAT }}
           branch: ${{ cloudbees.scm.branch }}
+      - name: Security Gate
+        id: security-gate
+        uses: https://github.com/cb-demos/security-gate
+        with:
+          component: ${{ cloudbees.component.id }}
+          organization: ${{ cloudbees.org.id }}
+          unify-pat: ${{ secrets.UNIFY_PAT }}
+          branch: ${{ cloudbees.scm.branch }}
