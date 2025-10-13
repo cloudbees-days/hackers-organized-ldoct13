@@ -18,5 +18,10 @@ jobs:
           echo "cloudbees.scm.ref: ${{ cloudbees.scm.ref }}"
           echo "cloudbees.scm.sha: ${{ cloudbees.scm.sha }}"
           echo "cloudbees.version: ${{ cloudbees.version }}"
-
-
+      - name: Component details
+        id: details
+        uses: https://github.com/cb-demos/component-details
+        with:
+          component: ${{ cloudbees.component.id }}
+          organization: ${{ cloudbees.org.id }}
+          unify-pat: ${{ secrets.UNIFY_PAT }}
