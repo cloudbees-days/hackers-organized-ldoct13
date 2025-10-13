@@ -25,9 +25,9 @@ jobs:
           component: ${{ cloudbees.component.id }}
           organization: ${{ cloudbees.org.id }}
           unify-pat: ${{ secrets.UNIFY_PAT }}
-      - name: Component details
-        id: details
-        uses: https://github.com/cb-demos/component-details
+      - name: Security Report
+        id: security-report
+        uses: https://github.com/cb-demos/security-report
         with:
           component: ${{ cloudbees.component.id }}
           organization: ${{ cloudbees.org.id }}
