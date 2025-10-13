@@ -10,7 +10,6 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "cloudbees.api: ${{ cloudbees.api }}"
           echo "cloudbees.api.token: ${{ cloudbees.api.token }}"
           echo "cloudbees.api.url: ${{ cloudbees.api.url }}"
           echo "cloudbees.component.id: ${{ cloudbees.component.id }}"
