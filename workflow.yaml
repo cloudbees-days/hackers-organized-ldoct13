@@ -29,7 +29,7 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           org-name: cloudbees-days
-          repo-name: PROJECT_NAME
+          repo-name: hackers-organized-ldoct13
           branch-name: main
           workflow-name: test-and-build-image
           test-type: JUnit
@@ -171,7 +171,7 @@ jobs:
             | MINOR_COUNT          | ${{ steps.FetchSonarQubeIssues.outputs.MINOR_COUNT }} |
           format: MARKDOWN
   deploy:
-    environment: "REPLACE_ME_ENV"
+    environment: "ld-prod"
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
@@ -184,22 +184,22 @@ jobs:
         uses: cloudbees-io/helm-install@v1
         with:
           chart-location: ${{ cloudbees.workspace }}/chart
-          release-name: PROJECT_NAME
+          release-name: hackers-organized-ldoct13
           namespace: ${{ vars.namespace }}
           values: |
             image:
               repository: ${{ vars.DOCKER_USER }}/hackers-organized
               tag: ${{ cloudbees.scm.sha }}
             fmKey: ${{ vars.FM_TOKEN }}
-            useVPC: REPLACE_ME_USE_VPC
-            fmInstance: REPLACE_ME_FM_INSTANCE
-            hostname: PROJECT_NAME.REPLACE_ME_ENV.preview.cb-demos.io
+            useVPC: false
+            fmInstance: cloudbees.io
+            hostname: hackers-organized-ldoct13.ld-prod.preview.cb-demos.io
       - name: Publish evidence
         uses: cloudbees-io/publish-evidence-item@v1
         with:
           content: |-
             ## Deployed environment
-            [Production frontend](https://PROJECT_NAME.REPLACE_ME_ENV.preview.cb-demos.io/)
+            [Production frontend](https://hackers-organized-ldoct13.ld-prod.preview.cb-demos.io/)
 
             Running hackers-organized:${{ cloudbees.scm.sha }}
           format: MARKDOWN
@@ -207,7 +207,7 @@ jobs:
         uses: https://github.com/cloudbees-io/register-deployed-artifact@v2
         with:
           artifact-id: ${{ needs.build-container-image.outputs.artifact-id }}
-          target-environment: "REPLACE_ME_ENV"
+          target-environment: "ld-prod"
     needs:
       - build-container-image
       - scan
