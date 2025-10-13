@@ -1,0 +1,12 @@
+image:
+  repository: cloudbeesdemo/hackers-organized
+  tag: stable
+  pullPolicy: Always
+
+hostname: replace-me.example.com
+
+fmKey: "replace-me"
+useVPC: false
+fmInstance: "cloudbees.io"
+
+replicas: 1
