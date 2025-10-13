@@ -1,0 +1,23 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "cloudbees.api: ${{ cloudbees.api }}"
+          echo "cloudbees.api.token: ${{ cloudbees.api.token }}"
+          echo "cloudbees.api.url: ${{ cloudbees.api.url }}"
+          echo "cloudbees.component.id: ${{ cloudbees.component.id }}"
+          echo "cloudbees.org.id: ${{ cloudbees.org.id }}"
+          echo "cloudbees.scm.branch: ${{ cloudbees.scm.branch }}"
+          echo "cloudbees.scm.ref: ${{ cloudbees.scm.ref }}"
+          echo "cloudbees.scm.sha: ${{ cloudbees.scm.sha }}"
+          echo "cloudbees.version: ${{ cloudbees.version }}"
+
+
