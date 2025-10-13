@@ -41,4 +41,5 @@ jobs:
           organization: ${{ cloudbees.org.id }}
           unify-pat: ${{ secrets.UNIFY_PAT }}
           branch: ${{ cloudbees.scm.branch }}
-          threshold: "4"
+          threshold: "3"
+          bypass: ${{ vars.BYPASS }}
